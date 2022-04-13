@@ -62,13 +62,6 @@ class CreateEmployeeComponent extends Component {
         this.props.history.push('/employees');
     }
 
-    getTitle(){
-        if(this.state.id === '_add'){
-            return <h3 className="text-center">Add Employee</h3>
-        }else{
-            return <h3 className="text-center">Update Employee</h3>
-        }
-    }
     render() {
         return (
             <div>
@@ -76,9 +69,6 @@ class CreateEmployeeComponent extends Component {
                 <div className="container">
                     <div className="row">
                         <div className="card col-md-6 offset-md-3 offset-md-3">
-                            {
-                                this.getTitle()
-                            }
                             <div className="card-body">
                                 <form>
                                     <div className="form-group">
