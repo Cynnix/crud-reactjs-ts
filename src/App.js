@@ -1,20 +1,23 @@
-import React from "react";
-import {Route, Routes} from 'react-router-dom';
-import { HOME } from './component/Home';
-import { ADD_USER } from './component/Adduser';
-import { EDIT_USER } from './component/Edituser';
-import { GlobalProvider } from './context/GlobalState';
-import './stylesheet/styles.css';
+import React from 'react';
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import ListEmployeeComponent from './components/ListEmployeeComponent';
+import CreateEmployeeComponent from './components/CreateEmployeeComponent';
+import ViewEmployeeComponent from './components/ViewEmployeeComponent';
 
 function App() {
-  return (
-    <GlobalProvider>
-      <Routes>
-        <Route path="/" component={HOME} exact />
-        <Route path="/add" component={ADD_USER} exact />
-        <Route path="/edit/:id" component={EDIT_USER} exact />
-      </Routes>
-    </GlobalProvider>
+    return (
+        <div>
+            <Router>
+                <div className="container">
+                    <Switch> 
+                        <Route path = "/" exact component = {ListEmployeeComponent}></Route>
+                        <Route path = "/employees" component = {ListEmployeeComponent}></Route>
+                        <Route path = "/add-employee/:id" component = {CreateEmployeeComponent}></Route>
+                        <Route path = "/view-employee/:id" component = {ViewEmployeeComponent}></Route>
+                    </Switch>
+                </div>
+            </Router>
+        </div>
   );
 }
 
