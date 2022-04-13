@@ -1,28 +1,28 @@
 export default (state, action) => {
     switch (action.type) {
-        case 'REMOVE_EMPLOYEE':
+        case 'REMOVE_USER':
             return {
                 ...state,
-                employees: state.employees.filter(employee => employee.id !== action.payload)
+                users: state.users.filter(employee => user.id !== action.payload)
             };
-        case 'ADD_EMPLOYEES':
+        case 'ADD_USER':
             return {
                 ...state,
-                employees: [...state.employees, action.payload]
+                users: [...state.users, action.payload]
             };
-        case 'EDIT_EMPLOYEE':
-            const updatedEmployee = action.payload;
+        case 'EDIT_USER':
+            const UPDATED_USER = action.payload;
 
-            const updatedEmployees = state.employees.map(employee => {
-                if (employee.id === updatedEmployee.id) {
-                    return updatedEmployee;
+            const UPDATED_USERS = state.users.map(user => {
+                if (user.id === UPDATED_USER.id) {
+                    return UPDATED_USER;
                 }
-                return employee;
+                return user;
             });
 
             return {
                 ...state,
-                employees: updatedEmployees
+                users: UPDATED_USERS
             };
         default: return state;
     }
