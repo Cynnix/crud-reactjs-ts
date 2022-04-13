@@ -1,9 +1,10 @@
 import React from "react";
-import {Route, Routes} from 'react-router-dom'
+import {Route, Routes} from 'react-router-dom';
 import { HOME } from './component/Home';
 import { ADD_USER } from './component/Adduser';
 import { EDIT_USER } from './component/Edituser';
 import { GlobalProvider } from './context/GlobalState';
+import './stylesheet/styles.css';
 
 function App() {
   return (

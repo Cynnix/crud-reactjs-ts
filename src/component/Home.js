@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Head, HEADING } from './Heading';
+import { HEADING } from './Heading';
 import { Userlist } from './Userlist';
 
 export const HOME = () => {
