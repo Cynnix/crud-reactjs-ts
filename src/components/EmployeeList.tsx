@@ -20,6 +20,6 @@ const EmployeeList = ({ employees, setEmployees}) => {
             </div>        
         </React.Fragment>
       );
-};
+}; 
 
 export default EmployeeList;
