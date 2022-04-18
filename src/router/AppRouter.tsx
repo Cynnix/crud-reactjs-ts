@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import { Redirect } from 'react-router';
+import { Navigate } from 'react-router'
 import Header from '../components/Header';
 import AddEmployee from '../components/AddEmployee';
 import EmployeeList from '../components/EmployeeList';
@@ -35,7 +35,8 @@ const AppRouter = () => {
                             )}
                             path="/edit/:id"
                             />
-                        <Route component={() => <Redirect to="/" />} />
+                        <Route path ="/" element={<Navigate to="/" />} />
+                        {/* changed from <Route component={() => <Redirect to="/" />} /> */}
                     </Switch>
                 </div>
             </div>

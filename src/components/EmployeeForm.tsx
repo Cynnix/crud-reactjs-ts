@@ -15,7 +15,6 @@ const EmployeeForm = (props) => {
 
     const [errorMsg, setErrorMsg] = useState('');
     const { employee_Name, employee_Position, email_Address, salary } = employee;
-email_Address
     const handleOnSubmit = (event) => {
         event.preventDefault();
         const values = [employee_Name, employee_Position, email_Address, salary];
