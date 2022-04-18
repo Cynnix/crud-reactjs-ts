@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Card, Col, Container, Form, Modal, Row, Table } from "react-bootstrap";
 import "../App.css";
 import { FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
-import { BaseEmployee, Employee } from "./Interface";
+import { Employee } from "./Interface";
 
 export const Menu = () => {
     const defaultUsers = [
@@ -83,7 +83,7 @@ export const Menu = () => {
                     <Card>
                         <Card.Body>
                             <div className="d-flex justify-content-betweeen customCardBody">
-                                <div className="d-flex" style={{marginLeft: "1026px"}}>
+                                <div className="d-flex">
                                     <Button
                                         variant="primary"
                                         onClick={handleShow}
@@ -91,6 +91,9 @@ export const Menu = () => {
                                     >
                                         <FaPlus />
                                     </Button>
+                                </div>
+                                <div style={{marginLeft: "14px", marginTop: "8px"}}>
+                                    <Card.Title>Add Employee</Card.Title>
                                 </div>
                             </div>
                             <Table striped bordered hover variant="dark">
