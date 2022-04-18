@@ -1,14 +1,5 @@
 import React, { useState } from "react";
-import {
-    Button,
-    Card,
-    Col,
-    Container,
-    Form,
-    Modal,
-    Row,
-    Table, 
-} from "react-bootstrap";
+import { Button, Card, Col, Container, Form, Modal, Row, Table } from "react-bootstrap";
 import "../App.css";
 import { FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { BaseEmployee, Employee } from "./Interface";
@@ -92,7 +83,7 @@ export const Menu = () => {
                     <Card>
                         <Card.Body>
                             <div className="d-flex justify-content-betweeen customCardBody">
-                                <div className="d-flex">
+                                <div className="d-flex" style={{marginLeft: "1026px"}}>
                                     <Button
                                         variant="primary"
                                         onClick={handleShow}
