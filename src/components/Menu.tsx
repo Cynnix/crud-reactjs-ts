@@ -43,7 +43,6 @@ export const Menu = () => {
     const [users, setUsers] = useState(defaultUsers);
     const [show, setShow] = useState(false);
     const [newUser, setNewUser] = useState(initCurrentUser);
-    const [showCreateBtn, setShowCreateBtn] = useState(true);
     const [editing, setEdit] = useState(false);
 
     const handleClose = () => {
@@ -61,14 +60,14 @@ export const Menu = () => {
 
     const onEdit = (newUser: any) => {
         setEdit(true);
-        if(editing == true) {
+        if(editing === true) {
             setNewUser({ ...newUser, newUser });
             handleShow();
         }    
     };
 
     const onSubmit = (newUser: any) => {
-        if (editing == true) {
+        if (editing === true) {
             onUpdateUser(newUser);
         }
         else {
@@ -93,9 +92,6 @@ export const Menu = () => {
                     <Card>
                         <Card.Body>
                             <div className="d-flex justify-content-betweeen customCardBody">
-                                <div>
-                                    <Card.Title>Employee Data</Card.Title>
-                                </div>
                                 <div className="d-flex">
                                     <Button
                                         variant="primary"
@@ -161,7 +157,7 @@ export const Menu = () => {
                             }}
                         >
                         <Modal.Header closeButton>{
-                            editing == true 
+                            editing === true 
                             ? <Modal.Title>Edit User</Modal.Title>
                             : <Modal.Title>Add User</Modal.Title>
                         }

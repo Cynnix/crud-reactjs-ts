@@ -1,10 +1,11 @@
 .App {
-    background-color: #5f6778;
+    background: linear-gradient(141deg, #c7d2f8 0%, #979ee3 51%, #547cd1 90%);
+    font-family: Noto Sans, Helvetica, sans-serif;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-size: calc(10px + 2vmin);
-    color: white;
+    color: rgb(28, 13, 101);
     font-family: Industry;
     text-align: center;
 }
@@ -26,4 +27,8 @@
 
 .customCardBody {
     margin-bottom: 20px;
+}
+
+.button-div {
+
 }
