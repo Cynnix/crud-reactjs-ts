@@ -12,7 +12,6 @@ import {
 import "../App.css";
 import { FaPencilAlt, FaPlus, FaTrashAlt } from "react-icons/fa";
 import { BaseEmployee, Employee } from "./Interface";
-import { ButtonToggle } from "reactstrap";
 
 export const Menu = () => {
     const defaultUsers = [
