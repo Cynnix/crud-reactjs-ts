@@ -23,7 +23,6 @@ app.add_middleware(
 async def read_root() -> dict:
     return {"message": "Welcome to the back-end of the app !"}
 
-
 # Route handler
 # GET       --> Read employee
 @app.get('/employee', tags=['employees'])
@@ -87,7 +86,6 @@ employees = [
         "position": "Quality Assurance Analyst",
     },
 ]
-
 
 
 
