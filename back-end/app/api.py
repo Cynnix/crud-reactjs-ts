@@ -24,6 +24,8 @@ app.add_middleware(
 async def read_root() -> dict:
     return {"message": "Welcome to the back-end of the app !"}
 
+
+# Route handler
 # GET       --> Read employee
 @app.get('/employee', tags=['employee'])
 async def get_Emp() -> dict:
@@ -41,8 +43,11 @@ async def add_Emp(todo: dict) -> dict:
 @app.put('/employee/{id}', tags=['employees'])
 async def edit_Emp(id:int, body:dict) -> dict:
     for emp in employees:
-        if int((emp['id'])) == id:
-            emp['Activity'] = body['Activity']
+        if int((emp['id'])) == id:  
+            emp['full_name'] = body['full_name']
+            emp['email_address'] = body['email_address']
+            emp['age'] = body['age']
+            emp['position'] = body['position']
             return {
                 "data":f"Employee with id {id} has been updated"
             }
@@ -52,10 +57,10 @@ async def edit_Emp(id:int, body:dict) -> dict:
 
 # DELETE    --> Delete employees
 @app.delete('/employee/{id}', tags=['employees'])
-async def delete_Todo(id: int) -> dict:
-    for todo in employees:
-        if int((todo['id'])) == id:
-            employees.remove(todo)
+async def delete_Emp(id: int) -> dict:
+    for emp in employees:
+        if int((emp['id'])) == id:
+            employees.remove(emp)
             return{
                 "data":f"id {id} has been deleted !"
             }
@@ -82,15 +87,7 @@ employees = [
         "age": "22",
         "position": "Quality Assurance Analyst",
     },
-
 ]
-
-# Route handler
-
-@app.get("/employee", tags=["employees"])
-async def get_employees() -> dict:
-    return { "data": employees}
-
 
 
 
