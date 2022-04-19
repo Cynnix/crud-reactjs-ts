@@ -8,8 +8,7 @@ app = FastAPI()
 # and port which runs at localhost:3000
 
 origins = [
-    "https://localhost:3000",
-    "localhost:3000"
+    "https://localhost:3000"
 ]
 
 app.add_middleware(
@@ -27,13 +26,13 @@ async def read_root() -> dict:
 
 # Route handler
 # GET       --> Read employee
-@app.get('/employee', tags=['employee'])
-async def get_Emp() -> dict:
+@app.get('/employee', tags=['employees'])
+async def get_Employees() -> dict:
     return {"data": employees}
 
 # POST      --> Create employee
 @app.post('/employee', tags=['employees'])
-async def add_Emp(todo: dict) -> dict:
+async def add_Employees(todo: dict) -> dict:
     employees.append(todo)
     return {
         "data": "An employee has been added !"
@@ -41,7 +40,7 @@ async def add_Emp(todo: dict) -> dict:
 
 # PUT       --> Put employee
 @app.put('/employee/{id}', tags=['employees'])
-async def edit_Emp(id:int, body:dict) -> dict:
+async def edit_Employees(id:int, body:dict) -> dict:
     for emp in employees:
         if int((emp['id'])) == id:  
             emp['full_name'] = body['full_name']
@@ -57,7 +56,7 @@ async def edit_Emp(id:int, body:dict) -> dict:
 
 # DELETE    --> Delete employees
 @app.delete('/employee/{id}', tags=['employees'])
-async def delete_Emp(id: int) -> dict:
+async def delete_Employees(id: int) -> dict:
     for emp in employees:
         if int((emp['id'])) == id:
             employees.remove(emp)
