@@ -1,8 +1,29 @@
-from fastapi import FastAPI
-# CORSMiddleware for cross-origins request
+from uuid import UUID
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware 
+from app.models import Employees, EmployeeUpdate
+from typing import List
+
 
 app = FastAPI()
+
+# database - list of employees
+db: List[Employees] = [
+    Employees(
+        id=UUID("280519d4-d484-43a3-b28d-8437cc363fe9"),
+        full_name="Paul Tito C. Rebollo",
+        email_address="paultito@gmail.com",
+        age="23",
+        position="Intern",
+    ),
+    Employees(
+        id=UUID("3f85aad8-ce29-452c-9e30-cfd71dbddef5"),
+        full_name="Paul John Cay",
+        email_address="pauljohncay@yahoo.com",
+        age="22",
+        position="Intern",
+    ),
+]
 
 # the config below allows cross-origin request from front-end domain
 # and port which runs at localhost:3000
@@ -19,73 +40,57 @@ app.add_middleware(
     allow_headers=["*"]
 )
 
+# tested using localhost:8000/docs 
+
 @app.get("/", tags=["root"])
-async def read_root() -> dict:
+async def readRoot() -> dict:
     return {"message": "Welcome to the back-end of the app !"}
 
 # Route handler
 # GET       --> Read employee
 @app.get('/employee', tags=['employees'])
-async def get_Employees() -> dict:
-    return {"data": employees}
+async def getEmployees() -> dict:
+    return db
 
-# POST      --> Create employee
+# POST       --> Add employee
 @app.post('/employee', tags=['employees'])
-async def add_Employees(todo: dict) -> dict:
-    employees.append(todo)
+async def addEmployees(emp: Employees) -> dict:
+    db.append(emp)
     return {
-        "data": "An employee has been added !"
+        "data":f"Employee added !"
     }
 
 # PUT       --> Put employee
 @app.put('/employee/{id}', tags=['employees'])
-async def edit_Employees(id:int, body:dict) -> dict:
-    for emp in employees:
-        if int((emp['id'])) == id:  
-            emp['full_name'] = body['full_name']
-            emp['email_address'] = body['email_address']
-            emp['age'] = body['age']
-            emp['position'] = body['position']
+async def editEmployees(id:UUID, emp_update: EmployeeUpdate) -> dict:
+    for emp in db:
+        if emp.id == id:  
+            if emp_update.full_name is not None:
+                emp.full_name = emp_update.full_name
+            if emp_update.email_address is not None:
+                emp.email_address = emp_update.email_address
+            if emp_update.age is not None:
+                emp.age = emp_update.age
+            if emp_update.position is not None:
+                emp.position = emp_update.position
             return {
                 "data":f"Employee with id {id} has been updated"
             }
-    return {
-        "data":f"Id {id} not found !"
-    }        
+    raise HTTPException(
+        status_code=404,
+        detail=f"User with id: {id} does not exist !"
+    )     
 
 # DELETE    --> Delete employees
 @app.delete('/employee/{id}', tags=['employees'])
-async def delete_Employees(id: int) -> dict:
-    for emp in employees:
-        if int((emp['id'])) == id:
-            employees.remove(emp)
+async def deleteEmployees(id: UUID) -> dict:
+    for emp in db:
+        if (emp.id) == id:
+            db.remove(emp)
             return{
                 "data":f"id {id} has been deleted !"
             }
-    return {
-        "data":f"Id {id} not found !"
-    }
-
-# dummy data - represents the structure of individual employees
-# Alternative is to wire up a database, but since I didn't use one in this app
-# I simply used a dummy list
-
-employees = [
-    {
-        "id": "1",
-        "full_name": "Paul Tito C. Rebollo",
-        "email_address": "paultito150@gmail.com",
-        "age": "23",
-        "position": "Intern",
-    },
-    {
-        "id": "2",
-        "full_name": "Paul John Cay",
-        "email_address": "pauljohncay@yahoo.com",
-        "age": "22",
-        "position": "Quality Assurance Analyst",
-    },
-]
-
-
-""" to update """
+    raise HTTPException(
+        status_code=404,
+        detail=f"User with id: {id} does not exist !"
+    )
